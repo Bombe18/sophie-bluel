@@ -1,9 +1,8 @@
 
-
+const buttonsFilter = document.querySelectorAll(".projet-buttons");
+const galleryItems = document.querySelectorAll("#gallery figure");
 
 /* Call API */
-
-const { response } = require("express");
 
 fetch("http://localhost:5678/api/works")
   .then(response => response.json())
@@ -20,36 +19,18 @@ fetch("http://localhost:5678/api/works")
       /* assemblage */
       newFigure.appendChild(newImg);
       newFigure.appendChild(newCaption);
-       newFigure.dataset.category = category; /* taking category from database */
+      newFigure.dataset.category = category; /* taking category from database */
       /* fill gallery */
 
       let gallery = document.querySelector("#gallery");
       gallery.appendChild(newFigure);
 
-  console.log(category);
-    });
+      console.log(category);
+    })
+    
+  });
 
-    /*
-    <div id="gallery" class="gallery">
-    <figure>
-    <img src="">
-    <figcaption>
-    </figcaption>
-    </figure>
-    </div>
-    */
-
-
-
-  })
-
-
-
-
-const buttonsFilter = document.querySelectorAll(".projet-buttons");
-const galleryItems = document.querySelectorAll("#gallery figure")
-/*      Si clic button
-      Alors montre button id */
+/*  Si clic button - Alors montre button id */
 buttonsFilter.forEach(button => {
   button.addEventListener("click", () => {
     buttonsFilter.forEach((button) => button.classList.remove("active"));
@@ -57,43 +38,24 @@ buttonsFilter.forEach(button => {
 
     const filterId = button.id;
     console.log(filterId);
-  
 
+    /*  pour chaque button clic
+    affiche image lié à l'id.*/
 
-/*  pour chaque button clic
-affiche image lié à l'id.*/
-
-
-
-    galleryItems.forEach(item => {
-            const itemCategory = item.dataset.category.id;
+    work.forEach(item => {
+      const work = item.dataset.category.id;
       if (filterId === "all" || filterId === itemCategory) {
         item.value.remove("hidden");
       } else { item.value.add("hidden"); };
     })
-
   });
-
-
 });
 
 
 
 
 
-/*       
-     "category": {
-      "id": 1,
-      "name": "Objets"
-    } 
-    "category": {
-      "id": 2,
-      "name": "Appartements"}
-    "category": {
-      "id": 3,
-      "name": "Hotels & restaurants"} */
-
-
+/*
 
 
 window.addEventListener("load", (event) => {
@@ -104,3 +66,6 @@ window.addEventListener("load", (event) => {
   
   console.log("page chargée")}
 });
+
+
+*/
