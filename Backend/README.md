@@ -31,8 +31,8 @@ npm start
 Pour lire la documentation, utiliser Chrome ou Firefox
 
 
-cd "C:\Users\Cyril\Documents\OpenclassroomsFormation\Cours2JS\Backend" 
+cd "C:\Users\Cyril\Documents\OpenclassroomsFormation\sophie-bluel\Backend" 
 npm start
 
 
-http://127.0.0.1:5500/FrontEnd/index.html
+http://127.0.0.1:5678/FrontEnd/index.html
