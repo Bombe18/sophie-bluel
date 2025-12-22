@@ -10,7 +10,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
 		rel="stylesheet">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+	<link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -20,8 +20,8 @@
 			<ul>
 				<li>projets</li>
 				<li>contact</li>
-				<li><a class="loginbutton" href="login.html">login</a></li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+				<li><a href="login.html">login</a></li>
+				<li class="instagram"><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 
 		</nav>
@@ -43,13 +43,13 @@
 			</article>
 		</section>
 		<section id="portfolio">
-			<h2>Mes Projets</h2>
+			<h2 class="titleh2">Mes projets</h2>
 
 			<div class="list-filters">
-				<input type="button" class="projet-buttons active" id='all' value="Tous">
-				<input type="button" class="projet-buttons" id='1' value="Objets">
-				<input type="button" class="projet-buttons" id='2' value="Appartements">
-				<input type="button" class="projet-buttons" id='3' value="Hotel & restaurants">
+				<button class="projet-buttons active" id='all'>Tous</button> 
+				<button  class="projet-buttons" id='1' >Objets</button >
+				<button class="projet-buttons" id='2' >Appartements</button >
+				<button  class="projet-buttons" id='3' >Hotel & restaurants</button>
 			</div>
 
 			<div id="gallery" class="gallery">
@@ -81,7 +81,7 @@
 			</ul>
 		</nav>
 	</footer>
-	<script src="assets/scripts.js" defer></script>
+	<script src="scripts/scripts.js" defer></script>
 </body>
 
 </html>
