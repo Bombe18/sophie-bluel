@@ -1,44 +1,46 @@
 
-window.addEventListener("load", async () => {
-    const login = await fetchLogin();
+const form = document.querySelector("form");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const errorMsg = document.querySelector(".errorMsgP");
 
 
 
+form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // empêche le reload
+
+    const login = {
+        email: email.value,
+        password: password.value
+    };
+
+    await fetchLogin(login)
+});
 
 async function fetchLogin(login) {
-const response = await fetch("http://localhost:5678/api/users/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(login)
-})
-}
-export function formlistener() {
-    const loginField = document.querySelector("form");
+errorMsg.innerHTML="";
 
-    loginField.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        login = {
-            email: event.target.querySelector("[name=email]").value,
-            password: event.target.querySelector("[name=password]").value,
-        };
+    const response = await fetch("http://localhost:5678/api/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(login)
     })
-}
 
-})
 
-function validationLogIn(formlistener, login) {
-    if email === login.email && password === login.password {
-        window.localStorage.setItem("token");
-        console.log("accepté");
-
-    } else {
-        email != login.email || password != login.password
-        console.log("erreur");
+    if (!response.ok) {
+        console.log("Email ou mot de passe incorrect");
+        let errorMsgP = document.createElement("div");
+        errorMsgP.textContent = "Erreur dans l’identifiant ou le mot de passe";
+        errorMsg.appendChild(errorMsgP);
     }
-}
 
+    const data = await response.json();
+    location.href = "index.html";
+    window.localStorage.setItem("login", login.token);
+    console.log(login.token)
+    return data;
 
+};
 
 
 
