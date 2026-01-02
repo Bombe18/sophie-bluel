@@ -24,10 +24,6 @@ window.addEventListener("load", () => {
             loginbutton.textContent = "logout"
         }
 
-        function Logout() {
-            //TODO
-        };
-
         function editMode() {
             //TODO 
         };
