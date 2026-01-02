@@ -11,14 +11,14 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./css/style.css">
-	<script src="./scripts/loginScript.js" defer></script>
+	<script src="./scripts/login.js" defer></script>
 </head>
 
 <body>
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
-			<ul>
+			<ul> 
 				<li><a href="index.html">projets</a></li>
 				<li>contact</li>
 				<li><a class="loginButton" href="login.html">login</a></li>
@@ -31,7 +31,7 @@
 		<section class="loginform">
 			<p class="log-in">Log In</p>
 			<div>
-				<div class="errorMsgP"></div>
+				<div class= "errorMsgP" id="errorMsgP"></div>
 				<form action="login">
 					<div  class="form-group"><label for="email">E-mail</label>
 						<input id="email" type="text" placeholder="Votre E-mail" name="email" required>
