@@ -57,7 +57,8 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
-body {
+
+.container1440 {
 	max-width: 1140px;
 	margin:auto;
 	font-family: 'Work Sans' ;
@@ -197,6 +198,7 @@ footer nav ul {
 .titleh2 {
 		text-align: center;
 margin-top: 140px;
+margin-bottom: 52px;
 }
 
 .list-filters {text-align: center;
@@ -306,3 +308,15 @@ input .submitstyle {
 }
 /*projects*/
 
+/*admin*/
+
+#blackBanner {
+display: flex;
+background-color: black; 
+justify-content: center;
+font-family: 'Work Sans'
+}
+
+.editMode {
+	margin: 21px 21px 21px 21px;
+}
