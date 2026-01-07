@@ -2,6 +2,7 @@ window.addEventListener("load", () => {
     const token = localStorage.getItem("authToken");
     const userId = localStorage.getItem("userId");
     const loginbutton = document.getElementById("login");
+    let modale;
     console.log(token, "\n", userId)
 
     if (token && userId) {
@@ -9,7 +10,8 @@ window.addEventListener("load", () => {
         removeCookies();
         addBlackBanner();
         removeFilters();
-        addEditMode();
+        editMode();
+        windowModale();
     }
 
     function removeCookies() {
@@ -25,8 +27,19 @@ window.addEventListener("load", () => {
     }
 
     function editMode() {
-        //TODO 
-    };
+        let editMode = document.createElement("p");
+        editMode.className = "openModale";
+        editMode.style.cursor = "pointer";
+        editMode.innerHTML = `
+        <i class="fa-regular fa-pen-to-square"></i> modifier
+    `;
+        let insert = document.getElementsByClassName("titleh2")[0];
+        insert.after(editMode);
+
+        editMode.addEventListener("click", openModale);
+
+
+    }
 
     function addBlackBanner() {
         let blackBanner = document.createElement("div");
@@ -43,19 +56,57 @@ window.addEventListener("load", () => {
         document.getElementById("list-filters").hidden = true;
     };
 
-    function addEditMode() {
-        let editMode = document.createElement("p");
-        let insert = document.getElementsByClassName("titleh2")[0]
+    async function windowModale() {
+        modale = document.createElement("div");
+        modale.className = "modale hidden";
 
-        editMode.innerHTML = `
-        <i class="fa-regular fa-pen-to-square"></i> 
-        modifier
-        `;
-        insert.after(editMode)
+        const modaleContent = document.createElement("div");
+        modaleContent.className = "modaleWindow";
+
+        modaleContent.innerHTML = `
+        <aside id="modaleContent" class="modaleContent" aria-hidden="hidden" role="dialog" aria-labelledby="ModaleTitle">
+        <div id="closeButton" class="closeButton"><i  class="fa-solid fa-x"></i></div>
+        <div class=modaleWrapper>
+        <p class="ModaleTitle">Galerie photo</p>
+        <div id="gallery-modale" class="gallery-modale"></div>
+        <button class="addPicture">Ajouter une photo</button>
+        </div> 
+        </aside>
+    `;
+
+        modale.appendChild(modaleContent);
+        document.body.appendChild(modale);
     }
 
-    function windowModale () {
-        
+    async function openModale() {
+        modale.classList.remove("hidden");
+
+        const modaleGallery = modale.querySelector("#gallery-modale");
+        modaleGallery.innerHTML = "";
+
+        const products = await fetchProducts();
+        addProductToDOM(products, modaleGallery);
+        const captions = modaleGallery.querySelectorAll("figcaption");
+        captions.forEach(caption => caption.remove());
+        closeModale();
+    }
+
+    function closeModale() {
+        modale.addEventListener("click", (event) => {
+            if (event.target === modale) {
+                modale.classList.add("hidden");
+            };
+        });
+
+        const closeButton = modale.querySelector("#closeButton");
+        if (closeButton) {
+            closeButton.style.cursor = "pointer";
+            closeButton.addEventListener("click", () => {
+            modale.classList.add("hidden");
+            });
+        };
+
+
     }
 
 })

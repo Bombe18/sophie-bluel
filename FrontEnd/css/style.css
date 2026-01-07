@@ -247,7 +247,9 @@ color: #3D3D3D;
 .projet-buttons.active {background: #1D6154;
 color: white;}
 
-.hidden { display: none;}
+.hidden {
+display: none;
+}
 /*login button*/
 
 .loginButton {
@@ -301,7 +303,7 @@ input .submitstyle {
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
-		height: 36px;
+	height: 36px;
 	border: none;
 	align-items: center;
 	
@@ -320,3 +322,83 @@ font-family: 'Work Sans'
 .editMode {
 	margin: 21px 21px 21px 21px;
 }
+
+.modaleContent {
+    position: relative;
+}
+
+.fa-x {
+	display: flex;
+	flex-direction: row-reverse;
+
+}
+
+.ModaleTitle { 
+	margin-top: 36px;
+	text-align: center;
+	font-size: 26px;
+	font-family: work Sans;
+}
+
+.modale {
+    position: fixed;
+    left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.modaleWindow {
+    width: 630px;
+    max-width: 90%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.gallery-modale { 
+width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 9px;
+  grid-row-gap: 29px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-bottom: #B3B3B3 solid 1px;
+  padding-bottom: 60px;
+}
+
+.gallery-modale img {
+	width: 100%;
+}
+
+.modaleWrapper {
+margin-left: 50px;
+margin-right: 50px;
+}
+
+button {
+	
+	display: flex;
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	margin : 20px auto ;
+	width: 47%;
+	text-align: center;
+	border-radius: 60px ;
+	height: 36px;
+	border: none;
+	align-items: center;
+	justify-content: center;
+}
+
+.hidden {
+display: none;
+} /* Pourquoi je dois mettre une deuxieme fois .hidden pour que ca fonctionne ? */ 
