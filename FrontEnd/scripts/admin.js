@@ -27,8 +27,8 @@ window.addEventListener("load", () => {
     }
 
     function editMode() {
-        let editMode = document.createElement("p");
-        editMode.className = "openModale";
+        let editMode = document.createElement("span");
+        editMode.className = "open-modale";
         editMode.style.cursor = "pointer";
         editMode.innerHTML = `
         <i class="fa-regular fa-pen-to-square"></i> modifier
@@ -53,7 +53,8 @@ window.addEventListener("load", () => {
     };
 
     function removeFilters() {
-        document.getElementById("list-filters").hidden = true;
+        const listFilters =  document.getElementById("list-filters");
+        listFilters.className = "hidden";
     };
 
     async function windowModale() {
@@ -65,11 +66,11 @@ window.addEventListener("load", () => {
 
         modaleContent.innerHTML = `
         <aside id="modaleContent" class="modaleContent" aria-hidden="hidden" role="dialog" aria-labelledby="ModaleTitle">
-        <div id="closeButton" class="closeButton"><i  class="fa-solid fa-x"></i></div>
+        <button id="closeButton" class="closeButton"><i  class="fa-solid fa-x"></i></button>
         <div class=modaleWrapper>
         <p class="ModaleTitle">Galerie photo</p>
         <div id="gallery-modale" class="gallery-modale"></div>
-        <button class="addPicture">Ajouter une photo</button>
+        <button id="addPicture" class="buttons-modale">Ajouter une photo</button>
         </div> 
         </aside>
     `;
