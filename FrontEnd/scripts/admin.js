@@ -5,14 +5,22 @@ window.addEventListener("load", () => {
     let modale;
     console.log(token, "\n", userId)
 
+  
+
     if (token && userId) {
+        isAdmin = true
         changeLoginToLogout();
         removeCookies();
         addBlackBanner();
         removeFilters();
         editMode();
         windowModale();
-    }
+    }  else {isAdmin= false}
+    
+    if (isAdmin === true) {
+        console.log("Is admin", isAdmin)
+    } else {
+         console.log("Is admin", isAdmin) }
 
     function removeCookies() {
         loginbutton.addEventListener("click", (event) => {
@@ -37,8 +45,6 @@ window.addEventListener("load", () => {
         insert.after(editMode);
 
         editMode.addEventListener("click", openModale);
-
-
     }
 
     function addBlackBanner() {
@@ -53,7 +59,7 @@ window.addEventListener("load", () => {
     };
 
     function removeFilters() {
-        const listFilters =  document.getElementById("list-filters");
+        const listFilters = document.getElementById("list-filters");
         listFilters.className = "hidden";
     };
 
@@ -103,7 +109,7 @@ window.addEventListener("load", () => {
         if (closeButton) {
             closeButton.style.cursor = "pointer";
             closeButton.addEventListener("click", () => {
-            modale.classList.add("hidden");
+                modale.classList.add("hidden");
             });
         };
 

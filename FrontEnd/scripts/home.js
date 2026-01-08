@@ -18,7 +18,7 @@ async function fetchProducts() {
     return await response.json();
 }
 
-function addProductToDOM(works, gallery) {
+function addProductToDOM(works, gallery, isAdmin = false) {
     works.forEach(work => {
         /* Balise creation */
         let newFigure = document.createElement("figure")
@@ -35,9 +35,17 @@ function addProductToDOM(works, gallery) {
         newFigure.appendChild(newCaption)
         newFigure.dataset.category = category;
 
+        
+        if (isAdmin) {
+            const trashbin = document.createElement("button")
+            trashbin.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+            newFigure.appendChild(trashbin);
+        }
         /* fill gallery */
         gallery.appendChild(newFigure);
     })
+
+
 }
 
 function filterProduct(button, buttonsFilter, gallery) {
