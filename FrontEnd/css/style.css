@@ -397,6 +397,24 @@ width: 100%;
 .gallery-modale img {
 	width: 100%;
 }
+.fa-trash-can {
+	color: white;
+	transform: scale(0.9);
+}
+
+.trash-class{
+	position: relative;
+	left: 68px;
+	top: -117px;
+	display: flex;
+	background: black;
+	border: transparent;
+	border-radius: 2px;
+	height: 17px;
+	width: 17px;
+	justify-content: center;
+	z-index: 2;
+} 
 
 .modaleWrapper {
 margin-left: 50px;

@@ -35,14 +35,15 @@ function addProductToDOM(works, gallery, isAdmin = false) {
         newFigure.appendChild(newCaption)
         newFigure.dataset.category = category;
 
-        
-        if (isAdmin) {
+      
+        /* fill gallery */
+        gallery.appendChild(newFigure);
+          if (isAdmin===true) {
             const trashbin = document.createElement("button")
+            trashbin.classList="trash-class"
             trashbin.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
             newFigure.appendChild(trashbin);
         }
-        /* fill gallery */
-        gallery.appendChild(newFigure);
     })
 
 

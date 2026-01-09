@@ -92,7 +92,7 @@ window.addEventListener("load", () => {
         modaleGallery.innerHTML = "";
 
         const products = await fetchProducts();
-        addProductToDOM(products, modaleGallery);
+        addProductToDOM(products, modaleGallery, isAdmin=true);
         const captions = modaleGallery.querySelectorAll("figcaption");
         captions.forEach(caption => caption.remove());
         closeModale();
