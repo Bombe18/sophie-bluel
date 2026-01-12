@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
     let modale;
     console.log(token, "\n", userId)
 
-  
+
 
     if (token && userId) {
         isAdmin = true
@@ -15,12 +15,16 @@ window.addEventListener("load", () => {
         removeFilters();
         editMode();
         windowModale();
-    }  else {isAdmin= false}
-    
+
+    } else { 
+        isAdmin = false 
+    };
+
     if (isAdmin === true) {
         console.log("Is admin", isAdmin)
     } else {
-         console.log("Is admin", isAdmin) }
+        console.log("Is admin", isAdmin)
+    };
 
     function removeCookies() {
         loginbutton.addEventListener("click", (event) => {
@@ -32,7 +36,7 @@ window.addEventListener("load", () => {
 
     function changeLoginToLogout() {
         loginbutton.textContent = "logout"
-    }
+    };
 
     function editMode() {
         let editMode = document.createElement("span");
@@ -45,7 +49,7 @@ window.addEventListener("load", () => {
         insert.after(editMode);
 
         editMode.addEventListener("click", openModale);
-    }
+    };
 
     function addBlackBanner() {
         let blackBanner = document.createElement("div");
@@ -63,40 +67,91 @@ window.addEventListener("load", () => {
         listFilters.className = "hidden";
     };
 
-    async function windowModale() {
+    function windowModale() {
         modale = document.createElement("div");
         modale.className = "modale hidden";
 
-        const modaleContent = document.createElement("div");
-        modaleContent.className = "modaleWindow";
+        modale.innerHTML = `<div id="modaleContent" class="modaleContent"></div>`;
 
-        modaleContent.innerHTML = `
-        <aside id="modaleContent" class="modaleContent" aria-hidden="hidden" role="dialog" aria-labelledby="ModaleTitle">
-        <button id="closeButton" class="closeButton"><i  class="fa-solid fa-x"></i></button>
-        <div class=modaleWrapper>
-        <p class="ModaleTitle">Galerie photo</p>
-        <div id="gallery-modale" class="gallery-modale"></div>
-        <button id="addPicture" class="buttons-modale">Ajouter une photo</button>
-        </div> 
-        </aside>
-    `;
-
-        modale.appendChild(modaleContent);
         document.body.appendChild(modale);
     }
 
     async function openModale() {
         modale.classList.remove("hidden");
+        modaleGallery();
+    };
+
+    async function modaleGallery() {
+        const modaleContent = document.getElementById("modaleContent");
+
+        modaleContent.innerHTML = `
+        <button id="closeButton" class="closeButton">
+            <i class="fa-solid fa-x"></i>
+        </button>
+
+        <div class="modaleWrapper">
+            <p class="ModaleTitle">Galerie photo</p>
+            <div id="gallery-modale" class="gallery-modale"></div>
+            <div class="footer-modale">
+                <button id="addPicture" class="buttons-modale">
+                    Ajouter une photo
+                </button>
+            </div>
+        </div>
+    `;
 
         const modaleGallery = modale.querySelector("#gallery-modale");
         modaleGallery.innerHTML = "";
 
         const products = await fetchProducts();
-        addProductToDOM(products, modaleGallery, isAdmin=true);
-        const captions = modaleGallery.querySelectorAll("figcaption");
-        captions.forEach(caption => caption.remove());
+        addProductToDOM(products, modaleGallery, true);
+
+        modaleGallery.querySelectorAll("figcaption").forEach(c => c.remove());
+
+        modaleAddPicture();
         closeModale();
-    }
+    };
+
+
+
+
+    function modaleAddPicture() {
+        const buttonModale = document.getElementById("addPicture");
+        if (!buttonModale) return;
+
+        buttonModale.addEventListener("click", () => {
+            const modaleContent = document.getElementById("modaleContent");
+
+            modaleContent.innerHTML = `
+            <div class="button-adjust">
+                <button id="returnButton" class="return-button">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button id="closeButton" class="closeButton">
+                    <i class="fa-solid fa-x"></i>
+                </button>
+            </div>
+
+            <div class="modaleWrapper">
+                <p class="ModaleTitle">Ajout photo</p>
+                <div id="addPictureModale2" class="add-Picture"></div>
+                <div class="footer-modale">
+                    <button id="validate" class="buttons-modale">
+                        Ajouter une photo
+                    </button>
+                </div>
+            </div>
+        `;
+
+            document.addEventListener("click", (event) => {
+                if (event.target.closest("#returnButton")) {
+                    modaleGallery();
+                }
+            });
+
+            closeModale();
+        });
+    };
 
     function closeModale() {
         modale.addEventListener("click", (event) => {
@@ -114,6 +169,6 @@ window.addEventListener("load", () => {
         };
 
 
-    }
+    };
 
 })

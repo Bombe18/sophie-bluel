@@ -338,6 +338,8 @@ justify-content: center;
 align-items: center;
 }
 
+/*Modale parameter*/
+
 .open-modale {
 	position: absolute;
 	top: 150px;
@@ -348,6 +350,10 @@ align-items: center;
     position: relative;
 	display: flex;
 	flex-direction:column;
+	width: 630px;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
 }
 
 .closeButton {
@@ -375,12 +381,15 @@ align-items: center;
     justify-content: center;
 }
 
-.modaleWindow {
-    width: 590px;
-    background-color: white;
-    border-radius: 10px;
-    padding: 20px;
+.footer-modale { width: 100%;
+  border-top: #B3B3B3 1px solid;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  padding-top: 30px; 
+  
 }
+/*modale1*/
 
 .gallery-modale { 
 width: 100%;
@@ -389,8 +398,6 @@ width: 100%;
   grid-column-gap: 9px;
   grid-row-gap: 29px;
   margin-top: 50px;
-  margin-bottom: 30px;
-  border-bottom: #B3B3B3 solid 1px;
   padding-bottom: 60px;
 }
 
@@ -404,8 +411,8 @@ width: 100%;
 
 .trash-class{
 	position: relative;
-	left: 68px;
-	top: -117px;
+	left: 75px;
+	top: -128px;
 	display: flex;
 	background: black;
 	border: transparent;
@@ -440,6 +447,20 @@ display: flex;
 
 .buttons-modale:hover {
 	background-color: #0E2F28;
+}
+
+/*Add photo modale 2*/
+
+.return-button {
+	border: none;
+	background: none;
+	transform: scale(1.5);
+}
+
+.button-adjust {
+	display: flex;
+	justify-content: space-between;
+	margin:0 10px 0 10px;
 }
 
 .hidden {
