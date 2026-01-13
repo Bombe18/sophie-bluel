@@ -15,6 +15,7 @@ window.addEventListener("load", () => {
         removeFilters();
         editMode();
         windowModale();
+        
 
     } else {
         isAdmin = false
@@ -109,6 +110,7 @@ window.addEventListener("load", () => {
         modaleGallery.querySelectorAll("figcaption").forEach(c => c.remove());
 
         modaleAddPicture();
+        deleteItem();
         closeModale();
     };
 
@@ -169,6 +171,18 @@ window.addEventListener("load", () => {
         });
     };
 
+   function deleteItem() {
+    const trashbins = document.querySelectorAll(".trash-class");
+
+    trashbins.forEach(trashbin => {
+        trashbin.addEventListener("click", () => {
+            console.log("button cliqué", trashbin);
+        });
+    });
+}
+
+deleteItem();
+
     function closeModale() {
         modale.addEventListener("click", (event) => {
             if (event.target === modale) {
@@ -183,8 +197,6 @@ window.addEventListener("load", () => {
                 modale.classList.add("hidden");
             });
         };
-
-
     };
 
 })
