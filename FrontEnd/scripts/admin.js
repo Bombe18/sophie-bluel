@@ -16,8 +16,8 @@ window.addEventListener("load", () => {
         editMode();
         windowModale();
 
-    } else { 
-        isAdmin = false 
+    } else {
+        isAdmin = false
     };
 
     if (isAdmin === true) {
@@ -132,14 +132,30 @@ window.addEventListener("load", () => {
                 </button>
             </div>
 
+   
             <div class="modaleWrapper">
                 <p class="ModaleTitle">Ajout photo</p>
-                <div id="addPictureModale2" class="add-Picture"></div>
-                <div class="footer-modale">
-                    <button id="validate" class="buttons-modale">
-                        Ajouter une photo
-                    </button>
-                </div>
+                <form class="form-modale" method="get">
+                    <div class="upload-box">
+                        <label class="addpicturemodale2" for="addPictureModale2">
+                            <input class="add-picture" type="file" id="addPictureModale2" hidden>
+                            <div class="logo-image"><img src="assets/icons/picture-svgrepo-com 1.png" alt="img"></i></div>
+                            <div class="upload-btn">+ Ajouter photo</div>
+                            <p class="upload-info">jpg, png : 4mo max</p>
+                        </label>
+                    </div>
+                    <div class="modale-img-spec">
+                        <label class="title-img-to-add" for="addTitle">Titre</label>
+                        <input class="addTitle" type="text"></input>
+                        <label class="category-img-modale" for="addCategory">Catégorie</label>
+                        <select class="addCategory" id="addCategory" name="categorie"></select>
+                    </div>
+                </form>
+            </div>
+            <div class="footer-modale">
+                <button id="validate" class="buttons-modale">
+                    Ajouter une photo
+                </button>
             </div>
         `;
 
