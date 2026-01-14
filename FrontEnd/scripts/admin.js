@@ -25,10 +25,10 @@ window.addEventListener("load", () => {
         console.log("Is admin", isAdmin)
     } else {
         console.log("Is admin", isAdmin)
-        
+
     };
 
-    
+
     function removeCookies() {
         loginbutton.addEventListener("click", (event) => {
             window.localStorage.removeItem("authToken");
@@ -109,8 +109,8 @@ window.addEventListener("load", () => {
         const products = await fetchProducts();
         addProductToDOM(products, modaleGallery, true);
         products.forEach(work => {
-    console.log("WORK ID =", work.id);
-});
+            console.log("WORK ID =", work.id);
+        });
         modaleGallery.querySelectorAll("figcaption").forEach(c => c.remove());
 
         modaleAddPicture();
@@ -144,10 +144,11 @@ window.addEventListener("load", () => {
                 <form class="form-modale" method="get">
                     <div class="upload-box">
                         <label class="addpicturemodale2" for="addPictureModale2">
-                            <input class="add-picture" type="file" id="addPictureModale2" hidden>
+                            <input class="add-picture" type="file" id="addPictureModale2" accept=".jpg, .png" hidden>
                             <div class="logo-image"><img src="assets/icons/picture-svgrepo-com 1.png" alt="img"></i></div>
                             <div class="upload-btn">+ Ajouter photo</div>
                             <p class="upload-info">jpg, png : 4mo max</p>
+                            <div class=uploadedImg></div>
                         </label>
                     </div>
                     <div class="modale-img-spec">
@@ -170,7 +171,7 @@ window.addEventListener("load", () => {
                     modaleGallery();
                 }
             });
-
+            uploadImage();
             closeModale();
         });
     };
@@ -190,6 +191,9 @@ window.addEventListener("load", () => {
                         `http://localhost:5678/api/works/${id}`,
                         {
                             method: "DELETE",
+                            headers: {
+                                "Authorization": `Bearer ${token}`
+                            }
                         }
                     );
                     if (!response.ok) {
@@ -204,17 +208,15 @@ window.addEventListener("load", () => {
         });
     }
 
+   async function uploadImage() {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
 
-
-
-    /*TODO
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(image);
-    
-      fileReader.onload = (fileReaderEvent) => {
-        const profilePicture = document.querySelector('.profile-picture');
-        profilePicture.style.backgroundImage = `url(${fileReaderEvent.target.result})`;
-    */
+        fileReader.onload = (fileReaderEvent) => {
+            const uploadedPicture = document.querySelector('.uploadedImg');
+            uploadedPicture.style.backgroundImage = `url(${fileReaderEvent.target.result})`;
+        }
+    }
     deleteItem();
 
     function closeModale() {
