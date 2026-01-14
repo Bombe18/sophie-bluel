@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
         removeFilters();
         editMode();
         windowModale();
-        
+
 
     } else {
         isAdmin = false
@@ -25,8 +25,10 @@ window.addEventListener("load", () => {
         console.log("Is admin", isAdmin)
     } else {
         console.log("Is admin", isAdmin)
+        
     };
 
+    
     function removeCookies() {
         loginbutton.addEventListener("click", (event) => {
             window.localStorage.removeItem("authToken");
@@ -106,7 +108,9 @@ window.addEventListener("load", () => {
 
         const products = await fetchProducts();
         addProductToDOM(products, modaleGallery, true);
-
+        products.forEach(work => {
+    console.log("WORK ID =", work.id);
+});
         modaleGallery.querySelectorAll("figcaption").forEach(c => c.remove());
 
         modaleAddPicture();
@@ -171,17 +175,47 @@ window.addEventListener("load", () => {
         });
     };
 
-   function deleteItem() {
-    const trashbins = document.querySelectorAll(".trash-class");
+    function deleteItem() {
+        const trashbins = document.querySelectorAll(".trash-class");
 
-    trashbins.forEach(trashbin => {
-        trashbin.addEventListener("click", () => {
-            console.log("button cliqué", trashbin);
+        trashbins.forEach(trashbin => {
+            trashbin.addEventListener("click", async () => {
+                const figure = trashbin.closest("figure");
+                const id = figure.dataset.id;
+
+                console.log("button cliqué", trashbin);
+
+                try {
+                    const response = await fetch(
+                        `http://localhost:5678/api/works/${id}`,
+                        {
+                            method: "DELETE",
+                        }
+                    );
+                    if (!response.ok) {
+                        throw new Error("erreur suppression")
+                    }
+                    figure.remove();
+                } catch (error) {
+                    console.error(error)
+
+                }
+            })
         });
-    });
-}
+    }
 
-deleteItem();
+
+
+
+    /*TODO
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(image);
+    
+      fileReader.onload = (fileReaderEvent) => {
+        const profilePicture = document.querySelector('.profile-picture');
+        profilePicture.style.backgroundImage = `url(${fileReaderEvent.target.result})`;
+    */
+    deleteItem();
 
     function closeModale() {
         modale.addEventListener("click", (event) => {

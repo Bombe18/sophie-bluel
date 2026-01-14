@@ -25,7 +25,7 @@ function addProductToDOM(works, gallery, isAdmin = false) {
         let newImg = document.createElement("img")
         let newCaption = document.createElement("figcaption")
         let category = work.category.id; /* create category from database. Hidden */
-
+ 
         /* fill balise */
         newImg.src = work.imageUrl
         newCaption.textContent = work.title
@@ -34,7 +34,7 @@ function addProductToDOM(works, gallery, isAdmin = false) {
         newFigure.appendChild(newImg)
         newFigure.appendChild(newCaption)
         newFigure.dataset.category = category;
-
+        newFigure.dataset.id = work.id;
       
         /* fill gallery */
         gallery.appendChild(newFigure);
