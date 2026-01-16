@@ -114,7 +114,7 @@ window.addEventListener("load", async () => {
         modaleGallery.querySelectorAll("figcaption").forEach(c => c.remove());
         deleteItem();
         modaleAddPicture();
-       
+
         closeModale();
     };
 
@@ -230,6 +230,7 @@ window.addEventListener("load", async () => {
 
                 }
             })
+            changeGalleryWhenDeletedPicture();
         });
     }
 
@@ -271,15 +272,24 @@ window.addEventListener("load", async () => {
         });
     }
 
-    function sendImgToBackend() { 
+    function sendImgToBackend() {
 
     }
 
-    function changeGalleryWhenDeletedPicture(modaleGallery) {
-        modaleGallery 
+    function changeGalleryWhenDeletedPicture() {
+        const modaleGallery = document.querySelector("#gallery-modale");
+        const mainGallery = document.querySelector(".gallery");
+        modaleGallery.innerHTML = "";
+        mainGallery.innerHTML = "";
+
+        addProductToDOM(works, modaleGallery, true);
+        addProductToDOM(works, mainGallery, false);
+
+        deleteItem();
+
     }
 
-    
+
 
     function closeModale() {
         modale.addEventListener("click", (event) => {
