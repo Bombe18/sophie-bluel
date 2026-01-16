@@ -575,9 +575,6 @@ input .submitstyle {
 	margin: 0 10px 0 10px;
 }
 
-.hidden {
-	display: none;
-}
 
 .form-modale {
 	display: flex;
@@ -666,4 +663,12 @@ font-weight: 500;
 	flex-direction: column;
 	gap: 10px;
 
+}
+
+.uploadedImg { 
+	height: 169px;
+}
+
+.hidden {
+	display: none;
 }

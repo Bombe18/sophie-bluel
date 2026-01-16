@@ -1,7 +1,8 @@
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
     const token = localStorage.getItem("authToken");
     const userId = localStorage.getItem("userId");
     const loginbutton = document.getElementById("login");
+    const categories = await fetchCategories();
     let modale;
     console.log(token, "\n", userId)
 
@@ -15,7 +16,6 @@ window.addEventListener("load", () => {
         removeFilters();
         editMode();
         windowModale();
-
 
     } else {
         isAdmin = false
@@ -112,9 +112,9 @@ window.addEventListener("load", () => {
             console.log("WORK ID =", work.id);
         });
         modaleGallery.querySelectorAll("figcaption").forEach(c => c.remove());
-
-        modaleAddPicture();
         deleteItem();
+        modaleAddPicture();
+       
         closeModale();
     };
 
@@ -148,8 +148,9 @@ window.addEventListener("load", () => {
                             <div class="logo-image"><img src="assets/icons/picture-svgrepo-com 1.png" alt="img"></i></div>
                             <div class="upload-btn">+ Ajouter photo</div>
                             <p class="upload-info">jpg, png : 4mo max</p>
-                            <div class=uploadedImg></div>
+                            
                         </label>
+                        <div class="div-uploaded-img"></div>
                     </div>
                     <div class="modale-img-spec">
                         <label class="title-img-to-add" for="addTitle">Titre</label>
@@ -157,6 +158,7 @@ window.addEventListener("load", () => {
                         <label class="category-img-modale" for="addCategory">Catégorie</label>
                         <select class="addCategory" id="addCategory" name="categorie"></select>
                     </div>
+                    
                 </form>
             </div>
             <div class="footer-modale">
@@ -171,10 +173,33 @@ window.addEventListener("load", () => {
                     modaleGallery();
                 }
             });
+            selectCategory();
             uploadImage();
             closeModale();
         });
     };
+
+    async function fetchCategories() {
+        const response = await fetch("http://localhost:5678/api/categories");
+        return await response.json();
+    }
+
+
+    async function selectCategory() {
+        const selectCategories = document.querySelector(".addCategory")
+        if (!selectCategories) return;
+        selectCategories.innerHTML = "";
+        const categories = await fetchCategories();
+        console.log(categories);
+
+        categories.forEach(categoryOption => {
+            const option = document.createElement("option");
+            option.value = categoryOption.id;
+            option.textContent = categoryOption.name;
+            selectCategories.appendChild(option);
+
+        });
+    }
 
     function deleteItem() {
         const trashbins = document.querySelectorAll(".trash-class");
@@ -208,16 +233,53 @@ window.addEventListener("load", () => {
         });
     }
 
-   async function uploadImage() {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
+    function uploadImage() {
+        const fileInput = document.getElementById("addPictureModale2");
+        const uploadedPicture = document.querySelector(".div-uploaded-img");
+        const label = document.querySelector(".addpicturemodale2");
 
-        fileReader.onload = (fileReaderEvent) => {
-            const uploadedPicture = document.querySelector('.uploadedImg');
-            uploadedPicture.style.backgroundImage = `url(${fileReaderEvent.target.result})`;
-        }
+        if (!fileInput) return;
+
+        fileInput.addEventListener("change", () => {
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            const maxSize = 4 * 1024 * 1024;
+            if (file.size > maxSize) {
+                alert("Le fichier dépasse 4 Mo");
+                fileInput.value = "";
+                return;
+            }
+
+            const allowedTypes = ["image/jpeg", "image/png"];
+            if (!allowedTypes.includes(file.type)) {
+                alert("Format non autorisé (jpg, png)");
+                fileInput.value = "";
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onload = (e) => {
+                uploadedPicture.innerHTML = `
+                <img class="uploadedImg" src="${e.target.result}" alt="aperçu image">
+            `;
+
+                label.classList.add("hidden");
+            };
+        });
     }
-    deleteItem();
+
+    function sendImgToBackend() { 
+
+    }
+
+    function changeGalleryWhenDeletedPicture(modaleGallery) {
+        modaleGallery 
+    }
+
+    
 
     function closeModale() {
         modale.addEventListener("click", (event) => {

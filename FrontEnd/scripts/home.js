@@ -25,7 +25,7 @@ function addProductToDOM(works, gallery, isAdmin = false) {
         let newImg = document.createElement("img")
         let newCaption = document.createElement("figcaption")
         let category = work.category.id; /* create category from database. Hidden */
- 
+        
         /* fill balise */
         newImg.src = work.imageUrl
         newCaption.textContent = work.title
