@@ -2,7 +2,7 @@ window.addEventListener("load", async () => {
     const token = localStorage.getItem("authToken");
     const userId = localStorage.getItem("userId");
     const loginbutton = document.getElementById("login");
-    const categories = await fetchCategories();
+   
     let modale;
     console.log(token, "\n", userId)
 
@@ -221,16 +221,27 @@ window.addEventListener("load", async () => {
                             }
                         }
                     );
+
+
+                    if (response.ok) {
+                        figure.remove();
+
+                        const mainGallery = document.querySelector(".gallery");
+                        mainGallery
+                            ?.querySelector(`figure[data-id="${id}"]`)
+                            ?.remove();
+                    }
+
                     if (!response.ok) {
                         throw new Error("erreur suppression")
                     }
-                    figure.remove();
+
                 } catch (error) {
                     console.error(error)
 
                 }
             })
-            changeGalleryWhenDeletedPicture();
+
         });
     }
 
@@ -238,6 +249,7 @@ window.addEventListener("load", async () => {
         const fileInput = document.getElementById("addPictureModale2");
         const uploadedPicture = document.querySelector(".div-uploaded-img");
         const label = document.querySelector(".addpicturemodale2");
+         const validatebtn = document.getElementById("validate");
 
         if (!fileInput) return;
 
@@ -269,26 +281,69 @@ window.addEventListener("load", async () => {
 
                 label.classList.add("hidden");
             };
+      
+        
+        })
+
+        validatebtn.addEventListener("click", ()=>{
+        sendImgToBackend();
+
         });
     }
 
-    function sendImgToBackend() {
+function sendImgToBackend() {
+    const fileInput = document.getElementById("addPictureModale2");
+    const titleInput = document.querySelector(".addTitle");
+    const categorySelect = document.querySelector(".addCategory");
+    const token = localStorage.getItem("authToken");
 
-    }
+    if (!fileInput || !titleInput || !categorySelect || !token) return;
 
-    function changeGalleryWhenDeletedPicture() {
-        const modaleGallery = document.querySelector("#gallery-modale");
-        const mainGallery = document.querySelector(".gallery");
-        modaleGallery.innerHTML = "";
-        mainGallery.innerHTML = "";
 
-        addProductToDOM(works, modaleGallery, true);
-        addProductToDOM(works, mainGallery, false);
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]);
+    formData.append("title", titleInput.value.trim());
+    formData.append("category", categorySelect.value);
 
-        deleteItem();
+    fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Veuillez mettre un titre.");
+        }
+        return response.json();
+    })
+.then((newWork) => {
+    alert("Image ajoutée avec succès");
+    addWorkToGallery(newWork);
+       
+    })
+    .catch(error => {
+        console.error(error);
+        alert(error);
+    });
 
-    }
+}
 
+function addWorkToGallery(work) {
+    const mainGallery = document.querySelector(".gallery");
+    if (!mainGallery) return;
+
+    const figure = document.createElement("figure");
+    figure.dataset.id = work.id;
+
+    figure.innerHTML = `
+        <img src="${work.imageUrl}" alt="${work.title}">
+        <figcaption>${work.title}</figcaption>
+    `;
+
+    mainGallery.appendChild(figure);
+}
 
 
     function closeModale() {
