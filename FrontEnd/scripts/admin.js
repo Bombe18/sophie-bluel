@@ -312,20 +312,27 @@ function sendImgToBackend() {
         },
         body: formData
     })
+    
+    
+
     .then(response => {
         if (!response.ok) {
-            throw new Error("Veuillez mettre un titre.");
-        }
-        return response.json();
+            if (titleInput.value.trim() === "") {
+                throw new Error("Veuillez mettre un titre.");
+            }
+            throw new Error("Veuillez ajouter une image.");
+        } if (response.ok) {
+            const newWork = formData;
+            alert("Image ajoutée avec succès");
+        addWorkToGallery(newWork);
+        return response.json();}
     })
-.then((newWork) => {
-    alert("Image ajoutée avec succès");
-    addWorkToGallery(newWork);
-       
-    })
-    .catch(error => {
+
+    .catch(error => {//TODO à voir
+        const message = "erreur réseau"
         console.error(error);
-        alert(error);
+        alert(error.message || message);
+        
     });
 
 }
