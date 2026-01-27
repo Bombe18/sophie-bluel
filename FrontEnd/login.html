@@ -15,45 +15,48 @@
 </head>
 
 <body>
-	<header>
-		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-		<nav>
-			<ul> 
-				<li><a href="index.html">projets</a></li>
-				<li>contact</li>
-				<li><a class="loginButton" href="login.html">login</a></li>
-				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-			</ul>
+	<div class="container1440">
+		<header class="width1440px">
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">projets</a></li>
+					<li>contact</li>
+					<li><a class="loginButton" href="login.html">login</a></li>
+					<li><img class="instagram" src="./assets/icons/instagram.png" alt="Instagram"></li>
+				</ul>
 
-		</nav>
-	</header>
-	<main>
-		<section class="loginform">
-			<p class="log-in">Log In</p>
-			<div>
-				<div class= "errorMsgP" id="errorMsgP"></div>
-				<form action="login">
-					<div  class="form-group"><label for="email">E-mail</label>
-						<input id="email" type="text" placeholder="Votre E-mail" name="email" required>
-					</div>
-					<div  class="form-group"><label for="password">Mot de passe</label>
-						<input id="password" type="password" placeholder="Votre mot de passe" name="password" required>
-					</div>
+			</nav>
+		</header>
+		<main>
+			<section class="loginform">
+				<p class="log-in">Log In</p>
+				<div>
+					<div class="errorMsgP" id="errorMsgP"></div>
+					<form action="login">
+						<div class="form-group"><label for="email">E-mail</label>
+							<input id="email" type="text" placeholder="Votre E-mail" name="email" required>
+						</div>
+						<div class="form-group"><label for="password">Mot de passe</label>
+							<input id="password" type="password" placeholder="Votre mot de passe" name="password"
+								required>
+						</div>
 
-					<input type="submit" id='submit' value="Se connecter">
-				</form>
-				<a href="#">Mot de passe oublié</a>
-			</div>
-		</section>
-	</main>
-
-	<footer>
+						<input type="submit" id='submit' value="Se connecter">
+					</form>
+					<a href="#">Mot de passe oublié</a>
+				</div>
+			</section>
+		</main>
+	</div>
+	<footer class="footer1440px">
 		<nav>
 			<ul>
 				<li>Mentions Légales</li>
 			</ul>
 		</nav>
 	</footer>
+
 </body>
 
 </html>
