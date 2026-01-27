@@ -194,11 +194,16 @@ h2 {
 }
 
 nav ul {
+
 	display: flex;
 	align-items: center;
 	list-style-type: none;
 	gap: 20px;
 }
+
+nav ul li {
+		font-family: Work Sans;
+	}
 
 ul button {
 	border: none;
@@ -271,12 +276,18 @@ li:hover {
 	flex-direction: column;
 }
 
-#contact input:hover {
+.button-send-message:hover {
 	background-color: #0E2F28;
 }
 
 #contact label {
 	margin: 2em 0 1em 0;
+}
+
+.form-name, .form-email {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	height: 51px;
 }
 
 #contact textarea {
@@ -390,7 +401,7 @@ figcaption {
 	margin-top: 25px;
 }
 
-*.form-group input {
+.form-group input {
 	border: none;
 	width: 379px;
 	height: 51px;
