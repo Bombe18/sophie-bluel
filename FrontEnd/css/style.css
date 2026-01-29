@@ -211,7 +211,7 @@ ul button {
 }
 
 .instagram {
-	scale: 0.5;
+	scale: 1.4;
 }
 
 nav li {
@@ -324,16 +324,18 @@ footer nav ul {
 .titleh2 {
 	text-align: center;
 	margin-top: 140px;
-	margin-bottom: 52px;
+	margin-bottom: 50px;
 }
 
 .list-filters {
 	display: flex;
 	justify-content: center;
 	text-align: center;
-	padding-bottom: 15px;
-	margin-top: 52px;
-	margin-bottom: 30px;
+	padding-bottom: 15px;	
+}
+
+.portfolio-title:active {
+	font-weight: 700;
 }
 
 .projet-buttons {
@@ -347,7 +349,7 @@ footer nav ul {
 	border-radius: 60px;
 	min-width: 100px;
 	color: #1D6154;
-	background-color: white;
+	background-color: transparent;
 	padding: 0 10px;
 }
 
@@ -357,6 +359,7 @@ footer nav ul {
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 18px;
 	grid-row-gap: 18px;
+	margin-top: 30px;
 }
 
 .gallery img {
@@ -442,6 +445,10 @@ input .submitstyle {
 
 }
 
+.forgot-password:hover { 
+	text-decoration: underline;
+}
+
 /*projects*/
 
 /*admin*/
@@ -517,9 +524,9 @@ input .submitstyle {
 }
 
 .footer-modale {
-	width: 100%;
+	width: 470px;
 	border-top: #B3B3B3 1px solid;
-	align-content: center;
+	align-self: center;
 	justify-content: center;
 	display: flex;
 	padding-top: 30px;
@@ -657,6 +664,24 @@ input .submitstyle {
 font-weight: 500;
 }
 
+.button-validate {
+	height: 36px;
+	font-size: 14px;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #A7A7A7;
+	width: 180px;
+	text-align: center;
+	border-radius: 60px;
+}
+
+.button-validate.active {
+	background-color: #1D6154;
+}
+
 /* + Ajouter photo */
 
 .upload-info {
@@ -690,6 +715,7 @@ font-weight: 500;
 }
 
 .uploadedImg { 
+	display: flex;
 	height: 169px;
 }
 
