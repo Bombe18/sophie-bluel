@@ -340,7 +340,7 @@ function validateForm() {
     const fileCategory = document.querySelector(".addCategory").value;
 
     function checkForm() {
-        const hasTitle = titleInput.value.trim() !== "";
+        const hasTitle = titleInput.value.trim() !== 0;
         const hasFile = fileInput.files.length > 0;
         const hasCategory = fileCategory !== 0;
 
@@ -366,7 +366,7 @@ function validateForm() {
 
         fileInput.value = "";
         titleInput.value = "";
-        categorySelect.value = "";
+        categorySelect.value = 1;
         uploadedPicture.innerHTML = "";
         label.classList.remove("hidden");
     }
