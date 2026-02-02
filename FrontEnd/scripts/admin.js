@@ -313,7 +313,6 @@ window.addEventListener("load", async () => {
             },
             body: formData
         })
-
             .then(async response => {
                if (response.ok) {
                     const newWork = await response.json();
@@ -340,7 +339,7 @@ function validateForm() {
     const fileCategory = document.querySelector(".addCategory").value;
 
     function checkForm() {
-        const hasTitle = titleInput.value.trim() !== 0;
+        const hasTitle = titleInput.value.trim() !== "";
         const hasFile = fileInput.files.length > 0;
         const hasCategory = fileCategory !== 0;
 
