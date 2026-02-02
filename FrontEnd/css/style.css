@@ -500,6 +500,7 @@ input .submitstyle {
 }
 
 .closeButton {
+	transform: scaleY(0.9);
 	align-self: flex-end;
 	border-style: none;
 	background: none;
