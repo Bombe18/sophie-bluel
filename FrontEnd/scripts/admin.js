@@ -314,24 +314,18 @@ window.addEventListener("load", async () => {
             body: formData
         })
 
-
-
-            .then(response => {
-                if (!response.ok) {
-                    if (titleInput.value.trim() === "") {
-                        throw new Error("Veuillez mettre un titre.");
-                    }
-                    throw new Error("Veuillez ajouter une image.");
-                } if (response.ok) {
-                    const newWork = formData;
+            .then(async response => {
+               if (response.ok) {
+                    const newWork = await response.json();
                     alert("Image ajoutée avec succès");
                     addWorkToGallery(newWork);
                     clearForm();
-                    return response.json();
+                    validateForm();
+                    return newWork;
                 }
             })
 
-            .catch(error => {//TODO à voir
+            .catch(error => {
                 const message = "erreur réseau"
                 console.error(error);
                 alert(error.message || message);
@@ -343,12 +337,14 @@ function validateForm() {
     const titleInput = document.querySelector(".addTitle");
     const fileInput = document.querySelector(".add-picture");
     const validatebtn = document.getElementById("validate");
+    const fileCategory = document.querySelector(".addCategory").value;
 
     function checkForm() {
         const hasTitle = titleInput.value.trim() !== "";
         const hasFile = fileInput.files.length > 0;
+        const hasCategory = fileCategory !== 0;
 
-        if (hasTitle && hasFile) {
+        if (hasTitle && hasFile && hasCategory) {
             validatebtn.disabled = false;
             validatebtn.classList.add("active");
         } else {
