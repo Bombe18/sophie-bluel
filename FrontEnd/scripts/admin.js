@@ -38,7 +38,8 @@ window.addEventListener("load", async () => {
     }
 
     function changeLoginToLogout() {
-        loginbutton.textContent = "logout"
+        loginbutton.textContent = "logout";
+        loginbutton.style.cursor = "pointer";
     };
 
     function editMode() {
