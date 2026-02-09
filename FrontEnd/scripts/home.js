@@ -20,23 +20,20 @@ async function fetchProducts() {
 
 function addProductToDOM(works, gallery, isAdmin = false) {
     works.forEach(work => {
-        /* Balise creation */
-        let newFigure = document.createElement("figure")
-        let newImg = document.createElement("img")
-        let newCaption = document.createElement("figcaption")
-        let category = work.category.id; /* create category from database. Hidden */
-        
-        /* fill balise */
-        newImg.src = work.imageUrl
-        newCaption.textContent = work.title
 
-        /* assemblage */
-        newFigure.appendChild(newImg)
-        newFigure.appendChild(newCaption)
+        let newFigure = document.createElement("figure");
+        let newImg = document.createElement("img");
+        let newCaption = document.createElement("figcaption");
+        let category = work.category.id; 
+        
+        newImg.src = work.imageUrl;
+        newCaption.textContent = work.title;
+
+        newFigure.appendChild(newImg);
+        newFigure.appendChild(newCaption);
         newFigure.dataset.category = category;
         newFigure.dataset.id = work.id;
       
-        /* fill gallery */
         gallery.appendChild(newFigure);
           if (isAdmin===true) {
             const trashbin = document.createElement("button")
@@ -50,19 +47,19 @@ function addProductToDOM(works, gallery, isAdmin = false) {
 }
 
 function filterProduct(button, buttonsFilter, gallery) {
-    const filterId = button.id
-    const figures = gallery.querySelectorAll("figure")
+    const filterId = button.id;
+    const figures = gallery.querySelectorAll("figure");
 
     buttonsFilter.forEach(button => button.classList.remove("active"));
     button.classList.add("active");
 
     figures.forEach(figure => {
-        const figureCategory = figure.dataset.category
+        const figureCategory = figure.dataset.category;
 
         if (filterId === "all" || filterId === figureCategory) {
-            figure.classList.remove("hidden")
+            figure.classList.remove("hidden");
         } else {
-            figure.classList.add("hidden")
+            figure.classList.add("hidden");
         }
     })
 }
