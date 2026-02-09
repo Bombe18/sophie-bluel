@@ -4,8 +4,8 @@ window.addEventListener("load", async () => {
     const password = document.getElementById("password");
     const errorMsg = document.getElementById("errorMsgP");
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault(); // Empêche le reload
+    form.addEventListener("submit", (event) => {
+        event.preventDefault(); 
 
         const credentials = {
             email: email.value,
